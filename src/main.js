@@ -13,7 +13,6 @@ import "./assets/tailwind.css";
 // boot
 import axiosInstance from "@/boot/axios.js";
 import createToken from "@/boot/create_token";
-import parseDate from "@/boot/parseDate";
 import Notify from "@/boot/notify.js";
 
 // vuetify
@@ -35,7 +34,6 @@ app.component("AdminLayout", AdminLayout);
 
 app.config.globalProperties.$axios = axiosInstance;
 app.config.globalProperties.$createToken = createToken;
-app.config.globalProperties.$parseDate = parseDate;
 
 app
   .use(router)

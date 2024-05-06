@@ -1,11 +1,7 @@
 <template>
   <div class="dashboard">
     <!-- Breadcrumbs -->
-    <Breadcrumbs
-      class="mb-6"
-      :title="`${this.$route.name}`"
-      :icon="`mdi-view-dashboard-outline`"
-    />
+    <Breadcrumbs class="mb-6" :items="['Menu', $route.meta.title]" />
 
     <!-- CardHeader -->
     <v-row>

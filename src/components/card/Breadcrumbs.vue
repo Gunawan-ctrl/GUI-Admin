@@ -1,15 +1,6 @@
 <template>
   <v-card>
-    <v-breadcrumbs class="text-brown">
-      <template v-slot:prepend>
-        <v-icon class="px-4" :icon="icon" size="small" />
-      </template>
-      <v-breadcrumbs-item
-        class="text-capitalize"
-        style="font-size: 14px"
-        :title="title"
-      />
-    </v-breadcrumbs>
+    <v-breadcrumbs :items="items" divider="/" style="font-size: 14px" />
   </v-card>
 </template>
 
@@ -23,6 +14,10 @@ export default {
     icon: {
       type: String,
       default: "",
+    },
+    items: {
+      type: Object,
+      default: null,
     },
   },
 };

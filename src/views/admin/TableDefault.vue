@@ -1,6 +1,6 @@
 <template>
   <!-- breadcrumbs Components -->
-  <Breadcrumbs class="mb-6" :title="`Data Table`" :icon="'mdi-table'" />
+  <Breadcrumbs class="mb-6" :items="['Table', $route.meta.title]" />
 
   <!-- DataTable Components -->
   <DataTable
@@ -19,11 +19,11 @@
       <v-list>
         <v-list-item
           prepend-avatar="/icons/location.avif"
-          :title="`Data ${$route.name}`"
+          :title="`Data ${$route.meta.title}`"
           :subtitle="
             editMode
-              ? `Edit data map ${$route.name}`
-              : `Tambah data map ${$route.name}`
+              ? `Edit data map ${$route.meta.title.toLowerCase()}`
+              : `Tambah data map ${$route.meta.title.toLowerCase()}`
           "
         >
           <template v-slot:append>
@@ -39,12 +39,12 @@
       <v-divider class="border-opacity-100"></v-divider>
 
       <v-card-text>
-        <v-row v-if="!editMode">
+        <v-row>
           <v-col cols="12" md="6">
             <v-text-field
-              label="Code"
-              v-model="code"
-              :rules="[() => !!code || 'This field is required']"
+              label="Nama Customer"
+              v-model="namaCustomer"
+              :rules="[() => !!namaCustomer || 'This field is required']"
               required
               density="compact"
               variant="outlined"
@@ -53,50 +53,29 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field
-              label="Radius"
-              v-model="radius"
+              label="Alamat"
+              v-model="alamat"
               required
-              type="number"
               density="compact"
               variant="outlined"
               color="primary"
             />
           </v-col>
-          <v-col cols="12">
-            <Leaflet
-              :customHeight="`250px`"
-              :zoom="5"
-              @map-click="updateCoordinates"
-              :lat="lat"
-              :long="long"
-            />
-          </v-col>
-          <v-col cols="12">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Latitude"
-              v-model="latitude"
-              readonly
-              density="compact"
-              variant="outlined"
-              color="primary"
-            />
-            <v-text-field
-              label="Longitude"
-              v-model="longitude"
-              readonly
+              label="No Telepon"
+              v-model="nomorTelepon"
+              type="Number"
               density="compact"
               variant="outlined"
               color="primary"
             />
           </v-col>
-        </v-row>
-        <v-row v-else>
-          <v-col cols="12">
+          <v-col cols="12" md="6">
             <v-text-field
-              label="Radius"
-              v-model="radius"
-              required
-              type="number"
+              label="Email"
+              v-model="email"
+              type="email"
               density="compact"
               variant="outlined"
               color="primary"
@@ -117,14 +96,12 @@
 <script>
 import Breadcrumbs from "@/components/card/Breadcrumbs";
 import DataTable from "@/components/table/DataTable";
-import Leaflet from "@/components/leaflet/Leaflet.vue";
 import DialogDetail from "@/components/card/DialogDetail.vue";
 
 export default {
   components: {
     Breadcrumbs,
     DataTable,
-    Leaflet,
     DialogDetail,
   },
   data: () => ({
@@ -135,37 +112,38 @@ export default {
     search: "",
     headers: [
       {
-        title: "Code  ",
+        title: "Nama",
         align: "start",
         sortable: false,
-        key: "code",
+        key: "nama",
         filterable: false,
-        value: "code",
-        class: "font-weight-bold",
-      },
-      { title: "Radius", key: "radius", sortable: false, value: "radius" },
-      {
-        title: "Latitude",
-        key: "latitude",
-        sortable: false,
-        value: "latitude",
+        value: "namaCustomer",
       },
       {
-        title: "Longitude",
-        key: "longitude",
+        title: "Alamat",
+        key: "alamat",
         sortable: false,
-        value: "longitude",
+        value: "alamat",
+      },
+      {
+        title: "No Telpon",
+        key: "nomorTelepon",
+        sortable: false,
+        value: "nomorTelepon",
+      },
+      {
+        title: "Email",
+        key: "email",
+        sortable: false,
+        value: "email",
       },
       { title: "Actions", key: "actions", sortable: false, align: "center" },
     ],
     data: [],
-    code: "",
-    radius: "",
-    latitude: null,
-    longitude: null,
-    latlng: null,
-    lat: null,
-    long: null,
+    namaCustomer: "",
+    alamat: "",
+    nomorTelepon: null,
+    email: null,
     detail: [],
   }),
 
@@ -177,7 +155,10 @@ export default {
     async getData() {
       this.loading = true;
       try {
-        const response = await this.$axios.get("points", this.$createToken());
+        const response = await this.$axios.get(
+          "customer/getAll",
+          this.$createToken()
+        );
         if (response.data.status) {
           this.data = response.data.data;
         }
@@ -198,16 +179,16 @@ export default {
     openDialog(editMode, item) {
       this.editMode = editMode;
       if (editMode) {
-        this.code = item.code;
-        this.radius = item.radius;
-        this.latitude = item.latitude;
-        this.longitude = item.longitude;
-        this.idAktive = item.id;
+        this.namaCustomer = item.namaCustomer;
+        this.alamat = item.alamat;
+        this.nomorTelepon = item.nomorTelepon;
+        this.email = item.email;
+        this.idAktive = item._id;
       } else {
-        this.code = null;
-        this.radius = null;
-        this.latitude = null;
-        this.longitude = null;
+        this.namaCustomer = null;
+        this.alamat = null;
+        this.nomorTelepon = null;
+        this.email = null;
       }
       this.dialog = true;
     },
@@ -217,7 +198,7 @@ export default {
       this.detailDialog = true;
       try {
         const response = await this.$axios.get(
-          `points/${id}`,
+          `customer/getById/${id}`,
           this.$createToken()
         );
         if (response.status) {
@@ -232,29 +213,33 @@ export default {
     resetForm() {
       this.dialog = false;
       this.editMode = false;
-      this.code = null;
-      this.radius = null;
-      this.latitude = null;
-      this.longitude = null;
+      this.namaCustomer = null;
+      this.alamat = null;
+      this.nomorTelepon = null;
+      this.email = null;
     },
 
     // Mengirim data untuk disimpan
     async onSubmit() {
       const formData = {
-        code: this.code,
-        radius: parseFloat(this.radius),
-        latitude: this.latitude,
-        longitude: this.longitude,
+        namaCustomer: this.namaCustomer,
+        alamat: this.alamat,
+        nomorTelepon: this.nomorTelepon,
+        email: this.email,
       };
       try {
         this.loading = true;
         const response = this.editMode
-          ? await this.$axios.patch(
-              `points/change-radius/${this.idAktive}`,
+          ? await this.$axios.put(
+              `customer/edit/${this.idAktive}`,
               formData,
               this.$createToken()
             )
-          : await this.$axios.post("points", formData, this.$createToken());
+          : await this.$axios.post(
+              "customer/add",
+              formData,
+              this.$createToken()
+            );
         if (response.data.status) {
           this.$suksesNotif(response.data.message);
           if (this.editMode) {
@@ -282,7 +267,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.$axios
-            .delete(`points/${id}`, this.$createToken())
+            .delete(`customer/delete/${id}`, this.$createToken())
             .then((res) => {
               this.$suksesNotif(
                 res.data.message ? res.data.message : "deleted successfully"

@@ -10,16 +10,25 @@ export default [
       {
         path: "/dashboard",
         name: "dashboard",
+        meta: {
+          title: "Dashboard",
+        },
         component: () => import("@/views/admin/Dashboard.vue"),
       },
       {
         path: "/table-default",
-        name: "Table Default",
+        name: "tableDefault",
+        meta: {
+          title: "Table Default"
+        },
         component: () => import("@/views/admin/TableDefault.vue"),
       },
       {
         path: "/profile",
         name: "profile",
+        meta: {
+          title: "Default"
+        },
         component: () => import("@/views/admin/Profile.vue"),
       },
 
@@ -42,6 +51,7 @@ export default [
         name: "login",
         meta: {
           guestPage: true,
+          title: "login"
         },
         component: () => import("@/views/auth/LoginPage.vue"),
       }

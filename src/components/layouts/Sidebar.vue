@@ -47,7 +47,7 @@
           color="brown"
           title="Table Default"
           value="tableDefault"
-          :to="{ name: 'Table Default' }"
+          :to="{ name: 'tableDefault' }"
         >
         </v-list-item>
         <v-list-item
@@ -124,8 +124,7 @@
           </v-list-item>
         </template>
 
-        <v-list-item color="brown" title="Login" value="tableDefault">
-        </v-list-item>
+        <v-list-item color="brown" title="Login" value="login"> </v-list-item>
         <v-list-item color="brown" title="Register" value="tablePagination">
         </v-list-item>
       </v-list-group>

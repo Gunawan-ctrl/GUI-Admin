@@ -12,8 +12,8 @@
           <v-col cols="12" sm="5" md="6" lg="6">
             <v-list-item
               class="mt-4 font-weight-black text-lowercase"
-              :title="`Data ${$route.name.toLowerCase()}`"
-              :subtitle="`daftar seluruh data ${$route.name.toLowerCase()}`"
+              :title="`Data ${$route.meta.title.toLowerCase()}`"
+              :subtitle="`daftar seluruh data ${$route.meta.title.toLowerCase()}`"
             >
             </v-list-item>
           </v-col>
@@ -45,23 +45,17 @@
           </v-col>
         </v-row>
       </template>
-      <template v-slot:[`item.code`]="{ item }">
-        <span class="text-capitalize">{{ item.code }}</span>
+      <template v-slot:[`item.nama`]="{ item }">
+        <span class="text-capitalize">{{ item.namaCustomer }}</span>
       </template>
-      <template v-slot:[`item.radius`]="{ item }">
-        <span class="text-capitalize">{{ item.radius }}</span>
-      </template>
-      <template v-slot:[`item.latitude`]="{ item }">
-        <span class="text-capitalize">{{ item.latitude }}</span>
-      </template>
-      <template v-slot:[`item.longitude`]="{ item }">
-        <span class="text-uppercase">{{ item.longitude }}</span>
+      <template v-slot:[`item.alamat`]="{ item }">
+        <span class="text-capitalize">{{ item.alamat }}</span>
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
         <div class="d-flex items-center justify-center">
           <v-btn
-            v-if="this.$route.name === 'points'"
+            v-if="$route.meta.title === 'Table Default'"
             class="mx-2 text-capitalize"
             color="green"
             prepend-icon="mdi-pencil"
@@ -72,21 +66,21 @@
           </v-btn>
 
           <v-btn
-            v-if="this.$route.name === 'points'"
+            v-if="$route.meta.title === 'Table Default'"
             class="text-capitalize"
             color="red"
             prepend-icon="mdi-delete"
             size="small"
-            @click="$emit('deleteItem', item.id)"
+            @click="$emit('deleteItem', item._id)"
           >
             Delete
           </v-btn>
           <v-btn
-            v-if="$route.name != 'points'"
+            v-if="$route.meta.title === 'Table Default'"
             variant="text"
             color="primary"
             size="small"
-            @click="$emit('showDetail', item.id)"
+            @click="$emit('showDetail', item._id)"
             class="text-capitalize"
           >
             Details

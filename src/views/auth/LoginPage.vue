@@ -94,7 +94,7 @@ export default {
   methods: {
     async handleSubmit() {
       try {
-        const response = await this.$axios.post("auth/login", this.form);
+        const response = await this.$axios.post("user/login", this.form);
         if (response.data.status) {
           localStorage.setItem("dataUser", JSON.stringify(response.data.data));
           this.$suksesNotif("sukses");

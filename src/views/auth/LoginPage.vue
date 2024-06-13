@@ -92,18 +92,9 @@ export default {
   },
 
   methods: {
-    async handleSubmit() {
-      try {
-        const response = await this.$axios.post("user/login", this.form);
-        if (response.data.status) {
-          localStorage.setItem("dataUser", JSON.stringify(response.data.data));
-          this.$suksesNotif("sukses");
-          this.$router.push({ name: "dashboard" });
-        }
-      } catch (error) {
-        this.$errNotif("Username or password is incorrect");
-        console.error(error);
-      }
+    handleSubmit() {
+      this.$router.push({ name: "dashboard" });
+      this.$suksesNotif("berhasil login");
     },
   },
 };

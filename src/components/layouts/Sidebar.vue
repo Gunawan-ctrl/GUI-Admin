@@ -46,14 +46,14 @@
         <v-list-item
           color="brown"
           title="Table Default"
-          value="tableDefault"
-          :to="{ name: 'tableDefault' }"
+          value="table Default"
+          :to="{ name: 'Table Default' }"
         >
         </v-list-item>
         <v-list-item
           color="brown"
           title="Table Pagination"
-          value="tablePagination"
+          value="table Pagination"
         >
         </v-list-item>
       </v-list-group>

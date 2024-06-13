@@ -46,11 +46,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Breadcrumbs from "@/components/card/Breadcrumbs";
 import CardHeader from "@/components/card/CardHeader";
-import ChartBar from "@/components/chart/ChartBar";
-import ChartDoughnut from "@/components/chart/ChartDoughnut";
+import ChartBar from "@/components/chart/chartJS/ChartBar";
+import ChartDoughnut from "@/components/chart/chartJS/ChartDoughnut";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -71,16 +71,4 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-export default {
-  components: {
-    Breadcrumbs,
-    CardHeader,
-    ChartBar,
-    ChartDoughnut,
-  },
-  data() {
-    return {};
-  },
-};
 </script>

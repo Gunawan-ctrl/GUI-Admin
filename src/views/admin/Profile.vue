@@ -32,14 +32,9 @@
   </v-card>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      loading: false,
-    };
-  },
-};
+<script setup>
+import { ref } from "vue";
+const loading = ref(false);
 </script>
 
 <style>

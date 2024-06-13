@@ -163,13 +163,7 @@
   </v-navigation-drawer>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      drawer: true,
-      dataUser: JSON.parse(localStorage.getItem("dataUser")),
-    };
-  },
-};
+<script setup>
+import { ref } from "vue";
+const drawer = ref(true);
 </script>

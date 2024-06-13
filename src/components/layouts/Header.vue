@@ -62,31 +62,25 @@
   </v-app-bar>
 </template>
 
-<script>
-export default {
-  data() {
-    return {};
-  },
-  methods: {
-    logout() {
-      this.$swal
-        .fire({
-          text: "Are you sure ?",
-          icon: "question",
-          showCancelButton: true,
-          cancelButtonColor: "#f75757",
-          confirmButtonColor: "#6bc179",
-          confirmButtonText: "Yes",
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            localStorage.clear();
-            this.$router.push({ name: "login" });
-          }
-        });
-    },
-  },
+<script setup>
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
+
+const router = useRouter();
+
+const logout = () => {
+  Swal.fire({
+    text: "Are you sure ?",
+    icon: "question",
+    showCancelButton: true,
+    cancelButtonColor: "#f75757",
+    confirmButtonColor: "#6bc179",
+    confirmButtonText: "Yes",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.clear();
+      router.push({ name: "login" });
+    }
+  });
 };
 </script>
-
-<style></style>

@@ -10,21 +10,11 @@
     <footerPage />
   </v-app>
 </template>
-<script>
+<script setup>
+import { ref } from "vue";
 import sidebar from "@/components/layouts/Sidebar";
 import headerPage from "@/components/layouts/Header";
 import footerPage from "@/components/layouts/Footer";
 
-export default {
-  components: {
-    sidebar,
-    headerPage,
-    footerPage,
-  },
-  data() {
-    return {
-      drawer: true,
-    };
-  },
-};
+const drawer = ref(null);
 </script>

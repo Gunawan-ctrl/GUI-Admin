@@ -11,8 +11,8 @@
 </template>
 <script setup>
 import Breadcrumbs from "@/components/card/Breadcrumbs.vue";
-import ChartBar from "@/components/chart/ChartBar.vue";
-import ChartDoughnut from "@/components/chart/ChartDoughnut";
+import ChartBar from "@/components/chart/chartJS/ChartBar.vue";
+import ChartDoughnut from "@/components/chart/chartJS/ChartDoughnut";
 
 import {
   Chart as ChartJS,

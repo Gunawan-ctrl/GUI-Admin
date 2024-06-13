@@ -91,28 +91,22 @@
   </v-card>
 </template>
 
-<script>
-export default {
-  props: {
-    Headers: {
-      type: Array,
-      default: () => [],
-    },
-    data: {
-      type: Array,
-      default: () => [],
-    },
-    totalPage: {
-      type: Number,
-    },
-    loading: {
-      type: Boolean,
-    },
+<script setup>
+import { ref } from "vue";
+const props = defineProps({
+  Headers: {
+    type: Array,
   },
-  data() {
-    return {
-      search: "",
-    };
+  data: {
+    type: Array,
   },
-};
+  totalPage: {
+    type: Number,
+  },
+  loading: {
+    type: Boolean,
+  },
+});
+
+const search = ref("");
 </script>

@@ -15,11 +15,6 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ErrorHeader from "@/components/card/ErrorHeader.vue";
-export default {
-  components: {
-    ErrorHeader,
-  },
-};
 </script>

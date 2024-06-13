@@ -15,24 +15,26 @@ router.beforeEach((to, from, next) => {
     )} - GUI Admin`
     : "GUI - Solution Technologies";
 
-  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
-  const noSession = dataUser === null || dataUser === "undefined";
+  next()
 
-  if (to.matched.some((record) => record.meta.authAdmin)) {
-    if (noSession) {
-      next({
-        name: "login",
-      });
-    } else {
-      next();
-    }
-  } else if (to.matched.some((record) => record.meta.guestPage)) {
-    if (noSession) {
-      next();
-    } else {
-      next({ name: "dashboard" });
-    }
-  }
+  // const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+  // const noSession = dataUser === null || dataUser === "undefined";
+
+  // if (to.matched.some((record) => record.meta.authAdmin)) {
+  //   if (noSession) {
+  //     next({
+  //       name: "login",
+  //     });
+  //   } else {
+  //     next();
+  //   }
+  // } else if (to.matched.some((record) => record.meta.guestPage)) {
+  //   if (noSession) {
+  //     next();
+  //   } else {
+  //     next({ name: "dashboard" });
+  //   }
+  // }
 });
 
 export default router;

@@ -6,10 +6,9 @@
   <DataTable
     :Headers="headers"
     :data="data"
-    :loading="loading"
     @showDetail="showDetail"
     @addItem="openDialog"
-    @editItem="openDialog(true, $event)"
+    @editItem="openDialog"
     @deleteItem="deleteItem"
   />
 
@@ -112,44 +111,98 @@ export default {
     search: "",
     headers: [
       {
-        title: "Nama",
+        title: "Dessert (100g serving)",
         align: "start",
         sortable: false,
-        key: "nama",
-        filterable: false,
-        value: "namaCustomer",
+        key: "name",
       },
-      {
-        title: "Alamat",
-        key: "alamat",
-        sortable: false,
-        value: "alamat",
-      },
-      {
-        title: "No Telpon",
-        key: "nomorTelepon",
-        sortable: false,
-        value: "nomorTelepon",
-      },
-      {
-        title: "Email",
-        key: "email",
-        sortable: false,
-        value: "email",
-      },
+      { title: "Calories", key: "calories" },
+      { title: "Fat (g)", key: "fat" },
+      { title: "Carbs (g)", key: "carbs" },
+      { title: "Protein (g)", key: "protein" },
       { title: "Actions", key: "actions", sortable: false, align: "center" },
     ],
-    data: [],
-    namaCustomer: "",
-    alamat: "",
-    nomorTelepon: null,
-    email: null,
+    data: [
+      {
+        name: "Frozen Yogurt",
+        calories: 159,
+        fat: 6.0,
+        carbs: 24,
+        protein: 4.0,
+      },
+      {
+        name: "Ice cream sandwich",
+        calories: 237,
+        fat: 9.0,
+        carbs: 37,
+        protein: 4.3,
+      },
+      {
+        name: "Eclair",
+        calories: 262,
+        fat: 16.0,
+        carbs: 23,
+        protein: 6.0,
+      },
+      {
+        name: "Cupcake",
+        calories: 305,
+        fat: 3.7,
+        carbs: 67,
+        protein: 4.3,
+      },
+      {
+        name: "Gingerbread",
+        calories: 356,
+        fat: 16.0,
+        carbs: 49,
+        protein: 3.9,
+      },
+      {
+        name: "Jelly bean",
+        calories: 375,
+        fat: 0.0,
+        carbs: 94,
+        protein: 0.0,
+      },
+      {
+        name: "Lollipop",
+        calories: 392,
+        fat: 0.2,
+        carbs: 98,
+        protein: 0,
+      },
+      {
+        name: "Honeycomb",
+        calories: 408,
+        fat: 3.2,
+        carbs: 87,
+        protein: 6.5,
+      },
+      {
+        name: "Donut",
+        calories: 452,
+        fat: 25.0,
+        carbs: 51,
+        protein: 4.9,
+      },
+      {
+        name: "KitKat",
+        calories: 518,
+        fat: 26.0,
+        carbs: 65,
+        protein: 7,
+      },
+    ],
+    code: "",
+    radius: "",
+    latitude: null,
+    longitude: null,
+    latlng: null,
+    lat: null,
+    long: null,
     detail: [],
   }),
-
-  async created() {
-    await this.getData();
-  },
 
   methods: {
     async getData() {
@@ -190,23 +243,15 @@ export default {
         this.nomorTelepon = null;
         this.email = null;
       }
+    },
+    // Membuka dialog untuk menambah atau mengedit data
+    openDialog() {
       this.dialog = true;
     },
 
     // Details data
-    async showDetail(id) {
+    showDetail(id) {
       this.detailDialog = true;
-      try {
-        const response = await this.$axios.get(
-          `customer/getById/${id}`,
-          this.$createToken()
-        );
-        if (response.status) {
-          this.detail = response.data.data;
-        }
-      } catch (error) {
-        this.$commonErrorNotif(), console.log(error);
-      }
     },
 
     // clear data
@@ -220,39 +265,9 @@ export default {
     },
 
     // Mengirim data untuk disimpan
-    async onSubmit() {
-      const formData = {
-        namaCustomer: this.namaCustomer,
-        alamat: this.alamat,
-        nomorTelepon: this.nomorTelepon,
-        email: this.email,
-      };
-      try {
-        this.loading = true;
-        const response = this.editMode
-          ? await this.$axios.put(
-              `customer/edit/${this.idAktive}`,
-              formData,
-              this.$createToken()
-            )
-          : await this.$axios.post(
-              "customer/add",
-              formData,
-              this.$createToken()
-            );
-        if (response.data.status) {
-          this.$suksesNotif(response.data.message);
-          if (this.editMode) {
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Menunggu 1 detik
-          }
-          this.getData();
-          this.resetForm();
-        }
-      } catch (error) {
-        this.$commonErrorNotif(), console.log(error);
-      } finally {
-        this.loading = false;
-      }
+    onSubmit() {
+      this.$suksesNotif("berhasil mengubah data");
+      this.resetForm();
     },
 
     // Menghapus item
@@ -266,17 +281,7 @@ export default {
         confirmButtonText: "Yes",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.$axios
-            .delete(`customer/delete/${id}`, this.$createToken())
-            .then((res) => {
-              this.$suksesNotif(
-                res.data.message ? res.data.message : "deleted successfully"
-              );
-              this.getData();
-            })
-            .catch((error) => {
-              this.$commonErrorNotif(), console.log(error);
-            });
+          this.$suksesNotif("deleted successfully");
         }
       });
     },

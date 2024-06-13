@@ -24,12 +24,52 @@ export default [
         component: () => import("@/views/admin/TableDefault.vue"),
       },
       {
+        path: "/table-pagination",
+        name: "tablePagination",
+        meta: {
+          title: "Table Pagination"
+        },
+        component: () => import("@/views/admin/TablePagination.vue"),
+      },
+      {
+        path: "/ChartJs",
+        name: "chartJS",
+        meta: {
+          title: "chartJS"
+        },
+        component: () => import("@/views/admin/ChartJS.vue"),
+      },
+      {
+        path: "/Apexchart",
+        name: "apexchart",
+        meta: {
+          title: "Apexchart"
+        },
+        component: () => import("@/views/admin/Apexchart.vue"),
+      },
+      {
+        path: "/Echart",
+        name: "echart",
+        meta: {
+          title: "Echart"
+        },
+        component: () => import("@/views/admin/Echart.vue"),
+      },
+      {
         path: "/profile",
         name: "profile",
         meta: {
           title: "Default"
         },
         component: () => import("@/views/admin/Profile.vue"),
+      },
+      {
+        path: "/blank",
+        name: "blank",
+        meta: {
+          title: "Blank"
+        },
+        component: () => import("@/views/admin/Blank.vue"),
       },
 
     ],

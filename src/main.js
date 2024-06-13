@@ -6,6 +6,7 @@ import router from "./router";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import Notifications from "@kyvg/vue3-notification";
+import VueApexCharts from "vue3-apexcharts";
 
 // tailwind
 import "./assets/tailwind.css";
@@ -41,4 +42,5 @@ app
   .use(VueSweetalert2)
   .use(Notifications)
   .use(Notify)
+  .use(VueApexCharts)
   .mount("#app");

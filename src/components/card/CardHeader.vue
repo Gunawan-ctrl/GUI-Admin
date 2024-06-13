@@ -18,6 +18,7 @@
         Rp. {{ value }}.000
       </v-card-text>
     </div>
+    <VSpacer />
     <v-card-actions>
       <v-icon
         class="align-self-center ml-auto"

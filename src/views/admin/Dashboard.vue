@@ -37,7 +37,7 @@
     <!-- ChartBar dan ChartDoughnut -->
     <v-row>
       <v-col cols="12" md="8">
-        <ChartBar />
+        <ChartBar :height="142" />
       </v-col>
       <v-col cols="12" md="4">
         <ChartDoughnut />

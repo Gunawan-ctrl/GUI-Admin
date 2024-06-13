@@ -5,46 +5,44 @@
         Grafik Pertumbuhan Usaha
       </v-card-title>
       <v-card-text>
-        <Bar :data="chartBar" :height="137" />
+        <Bar :data="chartBar" :height="height" />
       </v-card-text>
     </v-card>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import { Bar } from "vue-chartjs";
-export default {
-  components: {
-    Bar,
+
+const props = defineProps({
+  height: {
+    type: Number,
   },
-  data() {
-    return {
-      chartBar: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Okt",
-          "Nov",
-          "Dec",
-        ],
-        datasets: [
-          {
-            label: "Data Penjualan",
-            backgroundColor: ["#304FFE", "#ef6445", "#304FF1"],
-            borderRadius: 6,
-            data: [30, 90, 50, 70, 30, 90, 50, 70, 30, 90, 50, 70],
-            maxBarThickness: 30,
-          },
-        ],
-      },
-    };
-  },
-};
+});
+const chartBar = ref({
+  labels: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec",
+  ],
+  datasets: [
+    {
+      label: "Data Penjualan",
+      backgroundColor: ["#304FFE", "#ef6445", "#304FF1"],
+      borderRadius: 6,
+      data: [30, 90, 50, 70, 30, 90, 50, 70, 30, 90, 50, 70],
+      maxBarThickness: 30,
+    },
+  ],
+});
 </script>

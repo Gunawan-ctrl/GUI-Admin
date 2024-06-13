@@ -81,7 +81,6 @@
         >
           Details
         </v-btn> -->
-        >>>>>>> 0eb3abf (remove api)
       </template>
       <template v-slot:no-data>
         <p class="text-red">

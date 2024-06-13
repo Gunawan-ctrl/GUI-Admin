@@ -47,13 +47,14 @@
           color="brown"
           title="Table Default"
           value="table Default"
-          :to="{ name: 'Table Default' }"
+          :to="{ name: 'tableDefault' }"
         >
         </v-list-item>
         <v-list-item
           color="brown"
           title="Table Pagination"
           value="table Pagination"
+          :to="{ name: 'tablePagination' }"
         >
         </v-list-item>
       </v-list-group>
@@ -72,11 +73,26 @@
           </v-list-item>
         </template>
 
-        <v-list-item color="brown" title="ChartJS" value="chartJs">
+        <v-list-item
+          color="brown"
+          title="ChartJS"
+          value="chartJs"
+          :to="{ name: 'chartJS' }"
+        >
         </v-list-item>
-        <v-list-item color="brown" title="ApexchartJS" value="apexchartJs">
+        <v-list-item
+          color="brown"
+          title="ApexchartJS"
+          value="apexchartJs"
+          :to="{ name: 'apexchart' }"
+        >
         </v-list-item>
-        <v-list-item color="brown" title="ApexchartJS" value="apexchartJs">
+        <v-list-item
+          color="brown"
+          title="EchartJS"
+          value="echart"
+          :to="{ name: 'echart' }"
+        >
         </v-list-item>
       </v-list-group>
 
@@ -124,7 +140,13 @@
           </v-list-item>
         </template>
 
-        <v-list-item color="brown" title="Login" value="login"> </v-list-item>
+        <v-list-item
+          color="brown"
+          title="Login"
+          value="login"
+          :to="{ name: 'login' }"
+        >
+        </v-list-item>
         <v-list-item color="brown" title="Register" value="tablePagination">
         </v-list-item>
       </v-list-group>
@@ -134,6 +156,7 @@
         title="Blank Page"
         prepend-icon="mdi-alpha-b-circle-outline"
         value="blank"
+        :to="{ name: 'blank' }"
       >
       </v-list-item>
     </v-list>

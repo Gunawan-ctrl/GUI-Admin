@@ -147,7 +147,12 @@
           :to="{ name: 'login' }"
         >
         </v-list-item>
-        <v-list-item color="brown" title="Register" value="tablePagination">
+        <v-list-item
+          color="brown"
+          title="Register"
+          value="tablePagination"
+          :to="{ name: 'register' }"
+        >
         </v-list-item>
       </v-list-group>
 

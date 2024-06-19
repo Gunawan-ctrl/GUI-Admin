@@ -1,6 +1,6 @@
 <template>
   <VCard class="border" elevation="0">
-    <apexchart type="bar" :options="options" :series="series" height="490px" />
+    <apexchart type="bar" :options="options" :series="series" height="390px" />
   </VCard>
 </template>
 

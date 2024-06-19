@@ -67,9 +67,21 @@
             </v-col>
 
             <!-- Submit Button -->
-            <v-col cols="12">
-              <v-btn @click="handleSubmit" class="bg-primary w-full rounded-lg">
+            <v-col cols="12" md="6" align-self="end">
+              <v-spacer />
+              <v-btn
+                @click="handleSubmit"
+                class="bg-primary rounded-lg mx-2"
+                elevation="0"
+              >
                 SIGN-IN
+              </v-btn>
+              <v-btn
+                @click="handleRegister"
+                class="rounded-lg border"
+                elevation="0"
+              >
+                Register
               </v-btn>
             </v-col>
           </v-row>
@@ -79,23 +91,21 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        identify: "",
-        password: "",
-      },
-      visible: false,
-    };
-  },
+<script setup>
+import { ref, reactive, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
-  methods: {
-    handleSubmit() {
-      this.$router.push({ name: "dashboard" });
-      this.$suksesNotif("berhasil login");
-    },
-  },
+const form = reactive({
+  identify: "",
+  password: "",
+});
+const router = useRouter();
+const visible = ref(false);
+
+const handleSubmit = () => {
+  router.push({ name: "dashboard" });
+};
+const handleRegister = () => {
+  router.push({ name: "register" });
 };
 </script>

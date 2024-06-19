@@ -94,6 +94,11 @@ export default [
           title: "login"
         },
         component: () => import("@/views/auth/LoginPage.vue"),
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: () => import("@/views/auth/Register.vue"),
       }
     ],
   },

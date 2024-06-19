@@ -4,6 +4,8 @@
 
 ## 🚀 Demo
 
+[https://guiadmin.netlify.app](https://guiadmin.netlify.app)
+
 ## 🧐 Features
 
 Just fill in the details such as `Name`, `Tagline`, `Dev Platforms Username`, `Current Work`, `Portfolio`, `Blog`, etc. with a minimal UI.

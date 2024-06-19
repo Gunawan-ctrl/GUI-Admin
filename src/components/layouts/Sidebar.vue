@@ -7,7 +7,7 @@
       height="150px"
     >
       <div class="absolute inset-0 flex flex-col bg-transparent ma-4">
-        <v-avatar size="60" image="/icons/logo_gapari.png" />
+        <v-avatar size="60" image="/logo.png" />
         <div class="font-weight-bold">GUI Admin</div>
         <div
           class="text-capitalize text-overline text-brown-500"
@@ -97,6 +97,19 @@
       </v-list-group>
 
       <v-list-subheader style="font-size: 14px" class="text-black">
+        MAP
+      </v-list-subheader>
+
+      <v-list-item
+        color="brown"
+        title="Leaflet"
+        prepend-icon=" mdi-map"
+        value="leaflet"
+        :to="{ name: 'leaflet' }"
+      >
+      </v-list-item>
+
+      <!-- <v-list-subheader style="font-size: 14px" class="text-black">
         COMPONENTS
       </v-list-subheader>
 
@@ -120,19 +133,18 @@
         </v-list-item>
         <v-list-item color="brown" title="Tab" value="tablePagination">
         </v-list-item>
-      </v-list-group>
+      </v-list-group> -->
 
-      <v-list-item
+      <v-list-subheader style="font-size: 14px" class="text-black">
+        PAGES
+      </v-list-subheader>
+      <!-- <v-list-item
         color="brown"
         title="Forms"
         prepend-icon="mdi-alpha-f-circle-outline"
         value="forms"
       >
-      </v-list-item>
-
-      <v-list-subheader style="font-size: 14px" class="text-black">
-        PAGES
-      </v-list-subheader>
+      </v-list-item> -->
 
       <v-list-group>
         <template v-slot:activator="{ props }">

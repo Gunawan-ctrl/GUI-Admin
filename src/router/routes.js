@@ -56,6 +56,14 @@ export default [
         component: () => import("@/views/admin/Echart.vue"),
       },
       {
+        path: "/leaflet",
+        name: "leaflet",
+        meta: {
+          title: "Leaflet"
+        },
+        component: () => import("@/views/admin/Leaflet.vue"),
+      },
+      {
         path: "/profile",
         name: "profile",
         meta: {

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card elevation="0" class="border">
     <l-map
       :options="{ attributionControl: false }"
       :zoom="zoom"
@@ -76,7 +76,7 @@ export default {
     },
     customHeight: {
       type: String,
-      default: "",
+      required: true,
     },
   },
 

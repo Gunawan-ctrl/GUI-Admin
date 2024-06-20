@@ -1,17 +1,14 @@
 <template>
   <v-row>
-    <!-- Image Column -->
-    <v-col cols="12" md="6" justify-center align-self="center">
-      <v-card-item align="center" justify="center">
+    <v-col cols="12" md="6">
+      <v-card-item>
         <v-img src="/images/access-image.avif" cover class="rounded-lg"></v-img>
       </v-card-item>
     </v-col>
 
-    <!-- Divider Column -->
     <v-divider vertical class="border-opacity-75 my-10" />
 
-    <!-- Form Column -->
-    <v-col cols="12" md="6" justify-center align-self="center">
+    <v-col cols="12" md="6" align-self="center">
       <v-card-item>
         <template #prepend>
           <v-img
@@ -24,7 +21,6 @@
         <v-card-title class="text-2xl text-primary">GUI Admin</v-card-title>
       </v-card-item>
 
-      <!-- Welcome Text -->
       <v-card-text class="pt-2">
         <div class="mb-1 text-subtitle-1">
           Welcome to <span class="font-weight-bold">GUI Admin</span>
@@ -34,11 +30,9 @@
         </p>
       </v-card-text>
 
-      <!-- Login Form -->
       <v-card-text>
         <v-form @submit.prevent="handleSubmit">
           <v-row align="center">
-            <!-- Username Field -->
             <v-col cols="12">
               <v-text-field
                 v-model="form.identify"
@@ -51,7 +45,6 @@
               ></v-text-field>
             </v-col>
 
-            <!-- Password Field -->
             <v-col cols="12">
               <v-text-field
                 v-model="form.password"
@@ -66,7 +59,6 @@
               ></v-text-field>
             </v-col>
 
-            <!-- Submit Button -->
             <v-col cols="12" md="6" align-self="end">
               <v-spacer />
               <v-btn
@@ -92,7 +84,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 const form = reactive({

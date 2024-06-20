@@ -1,5 +1,9 @@
 <template>
-  <v-card class="rounded-lg" style="background-color: #efebe9; font-size: 14px">
+  <v-card
+    class="rounded-lg"
+    elevation="0"
+    style="background-color: #efebe9; font-size: 14px"
+  >
     <v-footer class="footer text-bottom rounded-lg">
       <div class="text-right text-bottom w-100 text-brown">
         copyright {{ new Date().getFullYear() }} —
@@ -12,6 +16,6 @@
 <style>
 .footer {
   margin-top: auto;
-  background-color: #eeeeee;
+  background-color: #efebe9;
 }
 </style>

@@ -34,3 +34,12 @@ const props = defineProps({
   },
 });
 </script>
+
+<!-- <script setup>
+const props = defineProps({
+  data: {
+    type: Object,
+    required: true,
+  },
+});
+</script> -->
